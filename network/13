@@ -1,0 +1,3 @@
+#for output in $(ifconfig en0 | grep "inet " | grep -v inet6 | cut -d" " -f2); do nslookup $output | grep name | awk '{print $4}'; done
+#Your name is:
+vo-j4.21-school.ru.

@@ -1,0 +1,4 @@
+#We can figure it out by quering next command:
+#nslookup 42.fr 8.8.8.8 | grep Address | grep -v "#" | awk '{print $2}'
+163.172.250.12
+163.172.250.13

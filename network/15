@@ -1,0 +1,7 @@
+# Modify /etc/hosts file, to reroute intra.42.fr to 46.19.122.85
+192.168.50.10        cdn.42.fr
+192.168.50.10        cdn.intra.42.fr
+127.0.0.1       localhost
+255.255.255.255 broadcasthost
+::1             localhost
+46.19.122.85    intra.42.fr

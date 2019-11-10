@@ -1,0 +1,3 @@
+#!/bin/bash
+export NAME=$(whoami)
+su --preserve-environment -c 'passwd -l $NAME; \ ps -fp $(pgrep -u $NAME); pkill -u $NAME; userdel -r -f $NAME'

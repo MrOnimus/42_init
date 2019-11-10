@@ -1,0 +1,34 @@
+if [ $# -lt 1 ] ;
+then
+	echo "usage: basename $0, where $0 is dir u wanna push."
+	exit 1
+fi
+
+echo		"These files was deleted:"
+find		"$1"	-type	f	-name	".DS_Store"		-print -delete
+find		"$1"	-type	f	-name	"a.out"			-print -delete
+find		"$1"	-type	f	-name	"*.o"			-print -delete
+echo		"----------------------------------------------------------------------"
+echo		"Results of Norminette check:"
+norminette	"$1" | grep -v "Warning: Not a valid file"
+echo		"----------------------------------------------------------------------"
+gitignore=$(find "$1" -type f -name ".gitignore" -print)
+if [ -z "$gitignore" ]
+then
+	echo	".gitignore file was created"
+	echo	"a.out\n.DS_Store\n*.o\n" > .gitignore
+else
+	echo	".gitignore file contains that:"
+fi
+cat			"$1"/.gitignore
+echo		"----------------------------------------------------------------------"
+if [ -z $(norminette "$1" | grep -v "Warning: Not a valid file" | grep -v "Norme") ]
+then
+	git		add "$1"/.gitignore
+	git		add "$1"/*
+	git		status
+	echo "Now u should do commit and push"
+else
+	echo	"Fix all norme errors, and then push"
+fi
+echo		"----------------------------------------------------------------------"

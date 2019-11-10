@@ -1,0 +1,4 @@
+# 1 is Local IP
+# 2 is NAT IP
+# 3 is Public IP
+# The name and IP address of the device is the same: 192.168.2.9
